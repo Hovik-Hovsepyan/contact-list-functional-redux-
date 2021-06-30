@@ -1,17 +1,19 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { del } from '../../../../actions/contactActions';
+import { del, favourites } from '../../../../actions/contactActions';
 
 import {
   FaUserEdit,
   GiCancel,
   GrStatusGoodSmall,
+  MdFavorite,
 } from 'react-icons/all';
 
 import './Person.css'
+import { useEffect } from 'react';
 
-const Person = ({ obj, index, setShow, setEditable, setChangeable }) => {
-  const { photo, name, surname, email, phone, status } = obj;
+const Person = ({ obj, index, favIndex,  setShow, setEditable, setChangeable }) => {
+  const { photo, name, surname, email, phone, status, favourite } = obj;
   const dispatch = useDispatch();
 
   const deleteContact = () => {
@@ -24,6 +26,15 @@ const Person = ({ obj, index, setShow, setEditable, setChangeable }) => {
     setChangeable(index);
   };
 
+  const favouriteContact = () => {
+    dispatch(favourites(index , favourite));
+  }
+
+  const unFavouriteContact =() => {
+    dispatch(favourites(favIndex , favourite));
+  }
+
+  // console.log(favIndex);
   return (
     <div className="person">
       <div className="pers">
@@ -42,14 +53,26 @@ const Person = ({ obj, index, setShow, setEditable, setChangeable }) => {
             <a href={`tel:${phone}`} className="links">(+374) {phone}</a>
           </div>
         </div>
-        <div className="icons">
-          <div className="deleteIcon">
-            <GiCancel onClick={deleteContact} />
-          </div>
-          <div className="editIcon">
-            <FaUserEdit onClick={editContact} />
-          </div>
-        </div>
+        {setShow === undefined  ? (
+                                  <div className={ `favouriteIcon ${favourite && "active" } ${setShow === undefined && "fav" } `} >
+                                    <MdFavorite onClick={unFavouriteContact} />
+                                  </div>
+                                  ) 
+                                :
+                                  ( <div className="icons">
+                                      <div className="deleteIcon">
+                                        <GiCancel onClick={deleteContact} />
+                                      </div>
+                                      <div className={`favouriteIcon ${favourite && "active"} `} >
+                                        <MdFavorite onClick={favouriteContact} />
+                                      </div>
+                                      <div className="editIcon">
+                                        <FaUserEdit onClick={editContact} />
+                                      </div>
+                                    </div>
+                                  )
+
+        }
       </div>
     </div>
   );

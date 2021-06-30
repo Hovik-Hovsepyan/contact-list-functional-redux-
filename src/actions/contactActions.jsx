@@ -1,4 +1,4 @@
-import { ADD_CONTACT, DELETE_CONTACT, SAVE_CONTACT } from './actionTypes';
+import { ADD_CONTACT, DELETE_CONTACT, FAVOURITE_CONTACT, SAVE_CONTACT } from './actionTypes';
 
 export const add = state => {
   return {
@@ -19,4 +19,12 @@ export const del = index => {
     type: DELETE_CONTACT,
     payload: index,
   };
+}
+
+export const favourites = (index, favourite) => {
+  return {
+    type: FAVOURITE_CONTACT,
+    payload: { index, favourite },
+  }
+
 };

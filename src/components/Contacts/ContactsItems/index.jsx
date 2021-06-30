@@ -1,6 +1,6 @@
-import Person from './Person';
-
 import { useSelector } from 'react-redux';
+
+import Person from './Person';
 
 const ContactsItems = ({ setShow, setEditable, setChangeable }) => {
   const state = useSelector(function (state) {
@@ -10,14 +10,15 @@ const ContactsItems = ({ setShow, setEditable, setChangeable }) => {
   return (
     state.map((el, index) => {
       return (
-        <Person
-          key={index}
-          obj={el}
-          index={index}
-          setShow={setShow}
-          setEditable={setEditable}
-          setChangeable={setChangeable}
-        />
+        <div key={index}>
+          <Person
+            obj={el}
+            index={index}
+            setShow={setShow}
+            setEditable={setEditable}
+            setChangeable={setChangeable}
+          />
+        </div>
       );
     })
   );

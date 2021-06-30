@@ -23,7 +23,13 @@ const Contacts = () => {
         <BsFillPersonPlusFill onClick={() => setShow(true)} />
       </div>
 
-      {show ? (
+      <ContactsItems
+        setShow={setShow}
+        setEditable={setEditable}
+        setChangeable={setChangeable}
+      />
+
+      {show && 
         <Modal
           closeModal={closeModal}
           changeable={changeable}
@@ -31,15 +37,6 @@ const Contacts = () => {
           editable={editable}
           setEditable={setEditable}
         />
-      )
-        :
-        (
-          <ContactsItems
-            setShow={setShow}
-            setEditable={setEditable}
-            setChangeable={setChangeable}
-          />
-        )
       }
     </div>
   );

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
-import { add, save } from '../../../actions/contactActions';
+import { add, save, favourites } from '../../../actions/contactActions';
 import { modalInp } from './modalInp';
 import { validation } from '../../../utils';
 
@@ -12,8 +12,9 @@ import './Modal.css';
 const Modal = ({ closeModal, setShow, changeable, setEditable, editable }) => {
 
   const [err, setErr] = useState("");
-  const [state, setState] = useState({ name: "", surname: "", email: "", phone: "", photo: "", selectedRadio: "offline", status: false });
+  const [state, setState] = useState({ name: "", surname: "", email: "", phone: "", photo: "", selectedRadio: "offline", status: false, favourite: false });
   const dispatch = useDispatch();
+
   let changeableArr = useSelector(state => {
     return state;
   });
@@ -61,7 +62,7 @@ const Modal = ({ closeModal, setShow, changeable, setEditable, editable }) => {
       setErr(valid);
     }
   };
-
+  
   return (
     <div className="modal">
       <div className="modal-content">
