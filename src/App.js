@@ -11,6 +11,7 @@ import Favourites from './components/Favourites';
 
 export const App = () => {
   const headers = ['All Contacts', 'Favourites'];
+  
     return (
       <div>
         <Tabs headers={headers}>

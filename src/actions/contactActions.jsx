@@ -21,10 +21,10 @@ export const del = index => {
   };
 }
 
-export const favourites = (index, favourite) => {
+export const favourites = index => {
   return {
     type: FAVOURITE_CONTACT,
-    payload: { index, favourite },
+    payload: index,
   }
 
 };

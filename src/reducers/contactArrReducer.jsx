@@ -20,7 +20,7 @@ export const contactArrReducer = (state = [], action) => {
   }
 
   if(action.type === FAVOURITE_CONTACT) {
-    state[action.payload.index].favourite = !state[action.payload.index].favourite;
+    state[action.payload].favourite = !state[action.payload].favourite;
     return [
       ...state,
     ];

@@ -10,38 +10,33 @@ import {
 } from 'react-icons/all';
 
 import './Person.css'
-import { useEffect } from 'react';
 
-const Person = ({ obj, index, favIndex,  setShow, setEditable, setChangeable }) => {
-  const { photo, name, surname, email, phone, status, favourite } = obj;
+const Person = ({ obj, index, setShow, setEditable, setChangeable }) => {
+  const { photo, name, surname, email, phone, status, favourite, id } = obj;
   const dispatch = useDispatch();
 
   const deleteContact = () => {
-    dispatch(del(index));
+    dispatch(del(id));
   };
 
   const editContact = () => {
     setEditable(true);
     setShow(true);
-    setChangeable(index);
+    setChangeable(id);
   };
 
   const favouriteContact = () => {
-    dispatch(favourites(index , favourite));
-  }
+    dispatch(favourites(index));
+    console.log(index,id);
+  };
 
-  const unFavouriteContact =() => {
-    dispatch(favourites(favIndex , favourite));
-  }
-
-  // console.log(favIndex);
   return (
     <div className="person">
       <div className="pers">
         <div className="image">
           <img src={photo} className="img" alt={photo} />
           {status ? <div className="online"><GrStatusGoodSmall /></div>
-            : <div className="offline"><GrStatusGoodSmall /></div>}
+                  : <div className="offline"><GrStatusGoodSmall /></div>}
         </div>
         <div className="info">
           <div className="fullName">
@@ -55,7 +50,7 @@ const Person = ({ obj, index, favIndex,  setShow, setEditable, setChangeable }) 
         </div>
         {setShow === undefined  ? (
                                   <div className={ `favouriteIcon ${favourite && "active" } ${setShow === undefined && "fav" } `} >
-                                    <MdFavorite onClick={unFavouriteContact} />
+                                    <MdFavorite onClick={favouriteContact} />
                                   </div>
                                   ) 
                                 :

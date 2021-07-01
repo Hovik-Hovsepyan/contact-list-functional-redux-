@@ -12,7 +12,7 @@ import './Modal.css';
 const Modal = ({ closeModal, setShow, changeable, setEditable, editable }) => {
 
   const [err, setErr] = useState("");
-  const [state, setState] = useState({ name: "", surname: "", email: "", phone: "", photo: "", selectedRadio: "offline", status: false, favourite: false });
+  const [state, setState] = useState({ name: "", surname: "", email: "", phone: "", photo: "", selectedRadio: "offline", status: false, favourite: false, id: null });
   const dispatch = useDispatch();
 
   let changeableArr = useSelector(state => {
@@ -30,7 +30,7 @@ const Modal = ({ closeModal, setShow, changeable, setEditable, editable }) => {
     const validateParams = { name, surname, email, phone, photo };
     const validator = await validation(state, validateParams);
 
-    return validator;
+    return 'ok'; //// validator
   };
 
   const change = async e => {
@@ -46,10 +46,12 @@ const Modal = ({ closeModal, setShow, changeable, setEditable, editable }) => {
     const valid = await validate();
     if (valid === 'ok') {
       setShow(false);
+      state.id = changeableArr.length;
       dispatch(add(state));
     } else {
       setErr(valid);
     }
+    
   };
 
   const saveContact = async obj => {

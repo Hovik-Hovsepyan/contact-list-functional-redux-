@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import Person from './Person';
 
 const ContactsItems = ({ setShow, setEditable, setChangeable }) => {
+  
   const state = useSelector(function (state) {
     return state;
   });
