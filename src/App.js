@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Tabs, Tab } from 'react-tab-view';
 
+// import Pagination from "react-js-pagination";
+
 import Contacts from './components/Contacts';
 
 import './App.css';

@@ -7,10 +7,10 @@ export const add = state => {
   };
 };
 
-export const save = (obj, changeable) => {
+export const save = obj => {
   return {
     type: SAVE_CONTACT,
-    payload: { obj, changeable },
+    payload: obj,
   };
 };
 

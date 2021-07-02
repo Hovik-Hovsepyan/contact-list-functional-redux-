@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
-import { add, save, favourites } from '../../../actions/contactActions';
+import { add, save } from '../../../actions/contactActions';
 import { modalInp } from './modalInp';
 import { validation } from '../../../utils';
 
@@ -20,8 +20,9 @@ const Modal = ({ closeModal, setShow, changeable, setEditable, editable }) => {
   });
 
   useEffect(() => {
+    let valuesArr = changeableArr.filter(el => el.id == changeable);
     if (editable) {
-      setState(changeableArr[changeable])
+      setState(valuesArr[0]);
     }
   }, []);
 
@@ -30,7 +31,7 @@ const Modal = ({ closeModal, setShow, changeable, setEditable, editable }) => {
     const validateParams = { name, surname, email, phone, photo };
     const validator = await validation(state, validateParams);
 
-    return 'ok'; //// validator
+    return validator; 
   };
 
   const change = async e => {
@@ -46,18 +47,20 @@ const Modal = ({ closeModal, setShow, changeable, setEditable, editable }) => {
     const valid = await validate();
     if (valid === 'ok') {
       setShow(false);
-      state.id = changeableArr.length;
+
+      changeableArr.length === 0 ? state.id = 0 
+                                 : state.id = ((changeableArr[changeableArr.length - 1].id) + 1);
+
       dispatch(add(state));
     } else {
       setErr(valid);
     }
-    
   };
 
   const saveContact = async obj => {
     const valid = await validate();
     if (valid === 'ok') {
-      dispatch(save(obj, changeable));
+      dispatch(save(obj));
       setEditable(false);
       setShow(false);
     } else {
@@ -84,6 +87,8 @@ const Modal = ({ closeModal, setShow, changeable, setEditable, editable }) => {
                     +374
                   </label>
                 </div>}
+          
+                {/* {console.log(el.name,state)} */}
               <input
                 onChange={(e) => change(e)}
                 type={el.type}
@@ -113,6 +118,7 @@ const Modal = ({ closeModal, setShow, changeable, setEditable, editable }) => {
             checked={state.selectedRadio === "offline"}
           />
         </label>
+
         <div className="inpBtns">
           <div className="createIcon">
             <BsCheckAll onClick={editable ? () => saveContact(state) : create} />

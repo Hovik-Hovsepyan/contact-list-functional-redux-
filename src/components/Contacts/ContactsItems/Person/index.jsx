@@ -11,7 +11,7 @@ import {
 
 import './Person.css'
 
-const Person = ({ obj, index, setShow, setEditable, setChangeable }) => {
+const Person = ({ obj, setShow, setEditable, setChangeable }) => {
   const { photo, name, surname, email, phone, status, favourite, id } = obj;
   const dispatch = useDispatch();
 
@@ -20,14 +20,13 @@ const Person = ({ obj, index, setShow, setEditable, setChangeable }) => {
   };
 
   const editContact = () => {
+    setChangeable(id);
     setEditable(true);
     setShow(true);
-    setChangeable(id);
   };
 
   const favouriteContact = () => {
-    dispatch(favourites(index));
-    console.log(index,id);
+    dispatch(favourites(id));
   };
 
   return (

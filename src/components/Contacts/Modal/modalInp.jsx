@@ -22,7 +22,7 @@ export const modalInp = [
 
   {
     name: "phone",
-    // placeholder: "+374 XXXXXX",
+    placeholder: "+374 XXXXXX",
     title: "Phone",
     type: "text",
   },

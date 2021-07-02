@@ -6,6 +6,7 @@ import ContactsItems from './ContactsItems/index';
 import { BsFillPersonPlusFill } from 'react-icons/bs';
 
 import './Contacts.css';
+import { useSelector } from 'react-redux';
 
 const Contacts = () => {
   const [show, setShow] = useState(false);
@@ -28,7 +29,6 @@ const Contacts = () => {
         setEditable={setEditable}
         setChangeable={setChangeable}
       />
-
       {show && 
         <Modal
           closeModal={closeModal}

@@ -9,18 +9,31 @@ export const contactArrReducer = (state = [], action) => {
   }
 
   if (action.type === DELETE_CONTACT) {
-    return state.filter((_, index) => index !== action.payload);
+    state = state.filter((el) => el.id !== action.payload);
+    return [
+      ...state,
+    ];
   }
 
   if (action.type === SAVE_CONTACT) {
-    state[action.payload.changeable] = action.payload.obj;
+    state = state.map(el => {
+      if(el.id == action.payload.id) {
+        el = action.payload;
+      }
+      return el;
+    });
     return [
       ...state,
     ];
   }
 
   if(action.type === FAVOURITE_CONTACT) {
-    state[action.payload].favourite = !state[action.payload].favourite;
+    state = state.map(el => {
+      if(el.id == action.payload) {
+        el.favourite = !el.favourite;
+      }
+      return el;
+    });
     return [
       ...state,
     ];

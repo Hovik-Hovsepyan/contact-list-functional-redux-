@@ -16,7 +16,6 @@ const Favourites = () => {
         <div key={index}>
           <Person
             obj={el}
-            index={el.id}
           />
         </div>
       );
