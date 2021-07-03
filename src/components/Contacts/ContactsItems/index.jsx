@@ -2,19 +2,20 @@ import { useSelector } from 'react-redux';
 
 import Person from './Person';
 
-const ContactsItems = ({ setShow, setEditable, setChangeable }) => {
+import {search} from '../../../utils';
+
+const ContactsItems = ({ setShow, setEditable, setChangeable, searchText }) => {
   
-  const state = useSelector(function (state) {
-    return state;
-  });
+  const state = useSelector(state => state);
+
+  const allContact = state.filter(el => search(el, searchText))
 
   return (
-    state.map((el, index) => {
+    allContact.map((el) => {
       return (
-        <div key={index}>
+        <div key={el.id}>
           <Person
             obj={el}
-            index={index}
             setShow={setShow}
             setEditable={setEditable}
             setChangeable={setChangeable}

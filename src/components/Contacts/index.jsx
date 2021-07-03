@@ -7,11 +7,13 @@ import { BsFillPersonPlusFill } from 'react-icons/bs';
 
 import './Contacts.css';
 import { useSelector } from 'react-redux';
+import ContactSearch from './ContactSearch';
 
 const Contacts = () => {
   const [show, setShow] = useState(false);
   const [editable, setEditable] = useState(false);
   const [changeable, setChangeable] = useState(null);
+  const [searchText, setSearchText] = useState("");
 
   const closeModal = () => {
     setShow(false);
@@ -23,13 +25,15 @@ const Contacts = () => {
       <div className="addContact">
         <BsFillPersonPlusFill onClick={() => setShow(true)} />
       </div>
+      <ContactSearch onSearch={setSearchText} />
 
       <ContactsItems
         setShow={setShow}
         setEditable={setEditable}
         setChangeable={setChangeable}
+        searchText={searchText}
       />
-      {show && 
+      {show &&
         <Modal
           closeModal={closeModal}
           changeable={changeable}

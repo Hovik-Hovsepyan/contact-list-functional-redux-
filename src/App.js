@@ -8,7 +8,8 @@ import Contacts from './components/Contacts';
 
 import './App.css';
 
-import Favourites from './components/Favourites';
+import Favourites from './components/Contacts/Favourites';
+import ContactSearch from './components/Contacts/ContactSearch';
 
 
 export const App = () => {
@@ -16,7 +17,7 @@ export const App = () => {
   
     return (
       <div>
-        <Tabs headers={headers}>
+        <Tabs headers={headers}>'
           <Tab>
             <Contacts />
           </Tab>

@@ -47,10 +47,7 @@ const Modal = ({ closeModal, setShow, changeable, setEditable, editable }) => {
     const valid = await validate();
     if (valid === 'ok') {
       setShow(false);
-
-      changeableArr.length === 0 ? state.id = 0 
-                                 : state.id = ((changeableArr[changeableArr.length - 1].id) + 1);
-
+      state.id = Date.now();
       dispatch(add(state));
     } else {
       setErr(valid);
