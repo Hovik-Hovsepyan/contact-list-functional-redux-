@@ -1,25 +1,30 @@
-import logo from './logo.svg';
+import React from 'react';
+
+import { Tabs, Tab } from 'react-tab-view';
+
+// import Pagination from "react-js-pagination";
+
+import Contacts from './components/Contacts';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Favourites from './components/Contacts/Favourites';
+import ContactSearch from './components/Contacts/ContactSearch';
 
-export default App;
+
+export const App = () => {
+  const headers = ['All Contacts', 'Favourites'];
+  
+    return (
+      <div>
+        <Tabs headers={headers}>'
+          <Tab>
+            <Contacts />
+          </Tab>
+          <Tab>
+            <Favourites />
+          </Tab>
+        </Tabs>
+      </div>
+    )
+}
